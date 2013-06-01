@@ -11,5 +11,12 @@ Password: <input type="text" name="password">
 </form>
 </br>
 <a href="/register">or you can register!</a>
+</br>
+</br>
+<a href="/contact">contact</a>
+</br>
+<a href="/faq">faq</a>
+</br>
+<a href="/settings">settings</a>
 </body>
 </html>
