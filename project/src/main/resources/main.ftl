@@ -23,6 +23,7 @@
 					<a href="#"><li>How It Works</li></a>
 					<a href="#"><li>FAQ</li></a>
 					<a href="#" class="login"><li>Login</li></a>
+					<a href="/register"><li>Register</li></a>
 				</ul>
 
 				<div class="loginBox hide">
