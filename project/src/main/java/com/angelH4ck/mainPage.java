@@ -10,10 +10,7 @@ import spark.Spark;
 
 import java.io.StringWriter;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -69,6 +66,8 @@ public class mainPage {
                 Template mainTemplate;
 
                 try {
+
+
                      mainTemplate = configuration.getTemplate("register.ftl");
                  //   Map<String, Object> emptyMap = new HashMap<String, Object>();
                    // mainTemplate.process(document, writer);
@@ -94,16 +93,34 @@ public class mainPage {
 
                 try {
                     final String first_name = request.queryParams("first_name");
+                    final String user_name = request.queryParams("user_name");
                     final String last_name = request.queryParams("last_name");
                     final String email_address = request.queryParams("email_address");
                     final String plan = request.queryParams("plan");
+
+                    //dont care about the below for now
                     final String billing_method = request.queryParams("billing_method");
                     final String billing_address = request.queryParams("billing_address");
                     //we'll actually persist this later.
 
+                    BasicDBObject newUser = new BasicDBObject("first_name", first_name);
+                    newUser.put("last_name", last_name);
+                    newUser.put("email_address", email_address);
+                    newUser.put("plan_type", plan);
+                    newUser.put("user_name", user_name);
+
+                    collection.insert(newUser);
+
                     mainTemplate = configuration.getTemplate("register2.ftl");
                     Map<String, Object> register2Map = new HashMap<String, Object>();
-                    register2Map.put("_id", "abc123");
+
+                    Random random = new Random();
+                    int ranNum = random.nextInt(123);
+                    String id = ranNum+"xYzO";
+                    register2Map.put("_id", id);
+                    register2Map.put("user_name", user_name);
+                    register2Map.put("first_name", first_name);
+
                     mainTemplate.process(register2Map, writer);
                     return writer.toString();
 
@@ -127,20 +144,66 @@ public class mainPage {
                 Template mainTemplate;
 
                 try {
+                    final String user_name = request.queryParams("user_name");
                     final String key_address_name = request.queryParams("key_address_name");
                     final String key_address = request.queryParams("key_address");
                     final String key_address2_name = request.queryParams("key_address2_name");
                     final String key_address2 = request.queryParams("key_address2");
+                    //what am i doing with the phone number?
                     final String phone_num = request.queryParams("phone_num");
                     //we'll actually persist this later.
 
+                     BasicDBObject query = new BasicDBObject("user_name", user_name);
+                     DBObject document = collection.findOne(query);
 
-                    //mainTemplate = configuration.getTemplate("register2.ftl");
-                    //   Map<String, Object> emptyMap = new HashMap<String, Object>();
-                    // mainTemplate.process(document, writer);
-                   // return mainTemplate.toString();
+                     BasicDBList addresses = new BasicDBList();
 
-                    return "You're done! You can use your custom ID to start ordering!";
+
+                     DBObject address1 = new BasicDBObject("address_name",key_address_name);
+                     address1.put("address", key_address);
+
+                     DBObject address2 = new BasicDBObject("address_name",key_address2_name);
+                     address2.put("address", key_address2);
+
+                    addresses.add(address1);
+                    addresses.add(address2);
+
+                    document.put("addresses",addresses );
+
+                    collection.save(document);
+
+
+
+                    Map<String, Object> accountsMap = new HashMap<String, Object>();
+
+                    BasicDBList deliveries = (BasicDBList)document.get("deliveries");
+                    BasicDBList notifications = (BasicDBList)document.get("notification");
+
+                    String firstName = (String)document.get("first_name");
+
+
+
+                    accountsMap.put("addresses", addresses);
+
+                    if(deliveries== null)
+                        accountsMap.put("deliveries", new ArrayList());
+                    else
+                        accountsMap.put("deliveries", deliveries);
+
+
+                    if(notifications== null)
+                        accountsMap.put("notifications", new ArrayList());
+                    else
+                        accountsMap.put("notifications",notifications);
+
+
+                    accountsMap.put("firstname", firstName);
+
+
+
+                    Template accountTemplate = configuration.getTemplate("account.ftl");
+
+                    accountTemplate.process(accountsMap, writer);
 
                 } catch (Exception e) {
 
@@ -148,7 +211,7 @@ public class mainPage {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
 
-                return "";
+                return writer;
 
             }
         });
@@ -258,10 +321,18 @@ public class mainPage {
                    String firstName = (String)document.get("first_name");
 
 
+                   if(deliveries== null)
+                       accountsMap.put("deliveries", new ArrayList());
+                   else
+                       accountsMap.put("deliveries", deliveries);
 
-                   accountsMap.put("notifications", notifications);
+
+                   if(notifications== null)
+                       accountsMap.put("notifications", new ArrayList());
+                   else
+                       accountsMap.put("notifications",notifications);
+
                    accountsMap.put("addresses", addresses);
-                   accountsMap.put("deliveries", deliveries);
                    accountsMap.put("firstname", firstName);
 
 
