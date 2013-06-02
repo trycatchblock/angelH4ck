@@ -58,7 +58,7 @@ Any time, anywhere in New York City.</p>
 <section id="benefits">
 </section>
 
-	<script src="assets/js/application.js"></script>
+	<script src="http://198.199.87.209/assets/js/application.js"></script>
 
 
 
