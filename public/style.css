@@ -832,28 +832,28 @@ header nav fieldset input[type=tel] {
   background: #92ac4d;
   display: block;
   display: inline-block;
+  padding: 4px;
+  margin: 0 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  padding: 4px;
-  margin: 0 3px;
 }
 #account .queue .cardTop .statusBar .DeliveryLocation,
 #account .queue .cardBottom .statusBar .DeliveryLocation {
   background: #fcf5db;
   display: block;
   display: inline-block;
+  padding: 4px;
+  margin: 0 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  padding: 4px;
-  margin: 0 3px;
 }
 #account .queue .cardTop .transit .DeliveryStatus,
 #account .queue .cardBottom .transit .DeliveryStatus {
