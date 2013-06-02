@@ -1,0 +1,77 @@
+@import "base.less"; // Import the base css
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+//* { background: rgba(0,0,0,0.1);}
+
+body { background: #f7f4f3; }
+div { box-sizing: border-box; }
+.hide { display: none; }
+.show { display: block; }
+
+header {
+   background: #fff;
+   height: 70px;
+
+   img, h1, nav { float: left; }
+
+   img {
+      margin-right: 2%;
+      width: 80px;
+   }
+
+   h1 {
+      margin-top: 20px;
+      color: #3a2f29;
+      text-transform: uppercase;
+      font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
+   }
+
+   nav {
+
+      ul {
+      margin: 0;
+      float: right;
+
+      a {
+         color: #58473e;
+         display: block;
+         text-decoration: none;
+         padding: 26px 20px 25px;
+         float: left;
+
+         &:hover {
+            color: #120f0d;
+            border-bottom: 2px solid #b7a499;
+         }
+      }
+
+      li {
+         text-transform: uppercase;
+         font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
+      }
+   }
+   .loginBox {
+            margin: 12px;
+
+   }
+   fieldset {
+float: right;
+      font-size: 16px;
+
+   select,
+   input[type=text],
+   input[type=password],
+   input[type=email],
+   input[type=search],
+   input[type=tel] {
+     width: 100px;
+   }
+
+   }
+}
+}
+
+
+
+
+
