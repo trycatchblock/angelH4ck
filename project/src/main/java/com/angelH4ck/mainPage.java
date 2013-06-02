@@ -197,11 +197,11 @@ public class mainPage {
                      DBObject address2 = new BasicDBObject("address_name",key_address2_name);
                      address2.put("address", key_address2);
 
-                    HttpResponse<JsonNode> addressRequest1 = Unirest.get("https://montanaflynn-geocode-location-information.p.mashape.com/address?address="+key_address)
+                    HttpResponse<JsonNode> addressRequest1 = Unirest.get("https://montanaflynn-geocode-location-information.p.mashape.com/address?address="+key_address.replaceAll(",",""))
                             .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
                             .asJson();
 
-                    HttpResponse<JsonNode> addressRequest2 = Unirest.get("https://montanaflynn-geocode-location-information.p.mashape.com/address?address="+key_address2)
+                    HttpResponse<JsonNode> addressRequest2 = Unirest.get("https://montanaflynn-geocode-location-information.p.mashape.com/address?address="+key_address2.replaceAll(",",""))
                             .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
                             .asJson();
 
