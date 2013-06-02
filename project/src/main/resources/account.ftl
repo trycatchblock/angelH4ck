@@ -21,7 +21,8 @@ List of key addresses
  <#list addresses as address>
  <p>
  address_name: ${address.address_name} </br>
- address: ${address.address}
+ address: ${address.address}    </br>
+ <img src="${address.mapURL}">
   </p>
  </p>
  </#list>
