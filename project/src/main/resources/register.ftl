@@ -50,14 +50,14 @@
     <label for="pass_word">Password: </label><input type="password" name="pass_word"> 
     <label for="email_address">Email Address: </label><input type="text" name="email_address">
     <label for="plan">Select Plan: </label><input type="text" name="plan">
-    <label for="billing_method">Billing method: </label><input type="text" name="billing_method">
-
-    <script src="paypal-button.js?merchant=4PHXPJ4QRARZE"
+    <!--<label for="billing_method">Billing method: </label><input type="text" name="billing_method">-->
+    <br/>
+    <script src="http://198.199.87.209/assets/js/paypal-button.js?merchant=4PHXPJ4QRARZE"
 	data-button="buynow"
 	data-name="My product"
 	data-amount="1.00"></script>
 
-    <label for="billing_address">Billing Address: </label><input type="text" name="billing_address">
+    <!--<label for="billing_address">Billing Address: </label><input type="text" name="billing_address">-->
   </fieldset>
 <input type="submit" value="Submit">
 </form>
