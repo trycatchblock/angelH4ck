@@ -212,11 +212,11 @@ public class mainPage {
                     String address2Lat = addressRequest2.getBody().getObject().getString("latitude");
                     String address2Long = addressRequest2.getBody().getObject().getString("longitude");
 
-                    HttpResponse<JsonNode> addMaprequest1 = Unirest.get("https://orfeomorello-static-map.p.mashape.com/mashape/staticimagemap/lat/"+address1Lat+"/lng/"+address1Long+"/provider/Google?height=200&key=%3Cnumeric%20or%20alphanumericstring%3E&maptype=roadmap&width=300&zoom=13")
+                    HttpResponse<JsonNode> addMaprequest1 = Unirest.get("https://orfeomorello-static-map.p.mashape.com/mashape/staticimagemap/lat/"+address1Lat+"/lng/"+address1Long+"/provider/Google?height=300&key=%3Cnumeric%20or%20alphanumericstring%3E&maptype=roadmap&width=300&zoom=13")
                             .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
                             .asJson();
 
-                    HttpResponse<JsonNode> addMaprequest2 = Unirest.get("https://orfeomorello-static-map.p.mashape.com/mashape/staticimagemap/lat/"+address2Lat+"/lng/"+address1Long+"/provider/Google?height=200&key=%3Cnumeric%20or%20alphanumericstring%3E&maptype=roadmap&width=300&zoom=13")
+                    HttpResponse<JsonNode> addMaprequest2 = Unirest.get("https://orfeomorello-static-map.p.mashape.com/mashape/staticimagemap/lat/"+address2Lat+"/lng/"+address1Long+"/provider/Google?height=300&key=%3Cnumeric%20or%20alphanumericstring%3E&maptype=roadmap&width=300&zoom=13")
                             .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
                             .asJson();
 
@@ -360,58 +360,70 @@ public class mainPage {
             }
         });
 
-
         Spark.post(new Route("/logged_in"){
-           @Override
-           public Object handle(final Request request, final Response response)
-           {
-               StringWriter writer = new StringWriter();
-               try{
-                     final String username = request.queryParams("user");
-                   //grab the user
-                    //lets ignore the password
+            @Override
+            public Object handle(final Request request, final Response response){
 
+                StringWriter writer = new StringWriter();
+                try{
+                    final String username = request.queryParams("user_name");
+                    final String password = request.queryParams("pass_word");
 
                     BasicDBObject query = new BasicDBObject("user_name", username);
                     DBObject document = collection.findOne(query);
 
+                    String myHash = (String)document.get("pass_word");
 
-                   Map<String, Object> accountsMap = new HashMap<String, Object>();
-
-                   BasicDBList deliveries = (BasicDBList)document.get("deliveries");
-                    BasicDBList addresses = (BasicDBList)document.get("addresses");
-                    BasicDBList notifications = (BasicDBList)document.get("notification");
-
-                   String firstName = (String)document.get("first_name");
+                    HttpResponse<JsonNode> passwordRequest = Unirest.get("https://pozzad-passwords.p.mashape.com/passwordtools/checkHash/"+password+"?hash="+myHash)
+                            .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
+                            .asJson();
 
 
-                   if(deliveries== null)
-                       accountsMap.put("deliveries", new ArrayList());
-                   else
-                       accountsMap.put("deliveries", deliveries);
+                    if(!passwordRequest.getBody().getObject().getString("passwordMatches").equals("false"))
+                    {
+
+                        Map<String, Object> accountsMap = new HashMap<String, Object>();
+
+                        BasicDBList deliveries = (BasicDBList)document.get("deliveries");
+                        BasicDBList addresses = (BasicDBList)document.get("addresses");
+                        BasicDBList notifications = (BasicDBList)document.get("notification");
+
+                        String firstName = (String)document.get("first_name");
 
 
-                   if(notifications== null)
-                       accountsMap.put("notifications", new ArrayList());
-                   else
-                       accountsMap.put("notifications",notifications);
-
-                   accountsMap.put("addresses", addresses);
-                   accountsMap.put("firstname", firstName);
+                        if(deliveries== null)
+                            accountsMap.put("deliveries", new ArrayList());
+                        else
+                            accountsMap.put("deliveries", deliveries);
 
 
-                    Template accountTemplate = configuration.getTemplate("account.ftl");
+                        if(notifications== null)
+                            accountsMap.put("notifications", new ArrayList());
+                        else
+                            accountsMap.put("notifications",notifications);
 
-                    //   Map<String, Object> emptyMap = new HashMap<String, Object>();
-                    accountTemplate.process(accountsMap, writer);
+                        accountsMap.put("addresses", addresses);
+                        accountsMap.put("firstname", firstName);
 
-               }
-               catch(Exception e)
-               {
-                             return null;
-               }
-                    return writer;
-           }
+
+                        Template accountTemplate = configuration.getTemplate("account.ftl");
+
+
+                        accountTemplate.process(accountsMap, writer);
+                    }
+                    else
+                    {
+                        return "ERROR: wrong password";
+                    }
+
+
+                }
+                catch(Exception e)
+                {
+                    return e.toString();
+                }
+                return writer;
+            }
         });
 
 
