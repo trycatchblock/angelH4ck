@@ -17,6 +17,10 @@
             <id>Spark repository</id>
             <url>http://www.sparkjava.com/nexus/content/repositories/spark/</url>
         </repository>
+        <repository>
+            <id>mashape-releases</id>
+            <url>http://maven.mashape.com/releases</url>
+        </repository>
     </repositories>
 
 
@@ -26,6 +30,32 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>2.10.1</version>
             <scope>src</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpasyncclient</artifactId>
+            <version>4.0-beta3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>4.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20090211</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>1.1.0</version>
         </dependency>
 
         <dependency>
