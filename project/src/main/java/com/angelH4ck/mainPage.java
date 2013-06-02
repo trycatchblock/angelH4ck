@@ -1,13 +1,20 @@
 package com.angelH4ck;
 
+import com.mashape.unirest.http.HttpResponse;
+
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
 import com.mongodb.*;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
+import freemarker.template.TemplateException;
+import org.json.JSONException;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 import spark.Spark;
 
+import java.io.IOException;
 import java.io.StringWriter;
 import java.net.UnknownHostException;
 import java.util.*;
@@ -98,33 +105,51 @@ public class mainPage {
                     final String email_address = request.queryParams("email_address");
                     final String plan = request.queryParams("plan");
 
-                    //dont care about the below for now
-                    final String billing_method = request.queryParams("billing_method");
-                    final String billing_address = request.queryParams("billing_address");
-                    //we'll actually persist this later.
+                    HttpResponse<JsonNode> req = Unirest.get("https://pozzad-email-validator.p.mashape.com/emailvalidator/validateEmail/"+email_address)
+                            .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
+                            .asJson();
 
-                    BasicDBObject newUser = new BasicDBObject("first_name", first_name);
-                    newUser.put("last_name", last_name);
-                    newUser.put("email_address", email_address);
-                    newUser.put("plan_type", plan);
-                    newUser.put("user_name", user_name);
 
-                    collection.insert(newUser);
+                        if(!req.getBody().getObject().getString("isValid").equals("false"))
+                        {
 
-                    mainTemplate = configuration.getTemplate("register2.ftl");
-                    Map<String, Object> register2Map = new HashMap<String, Object>();
+                            //dont care about the below for now
+                            final String billing_method = request.queryParams("billing_method");
+                            final String billing_address = request.queryParams("billing_address");
+                            //we'll actually persist this later.
 
-                    Random random = new Random();
-                    int ranNum = random.nextInt(123);
-                    String id = ranNum+"xYzO";
-                    register2Map.put("_id", id);
-                    register2Map.put("user_name", user_name);
-                    register2Map.put("first_name", first_name);
+                            BasicDBObject newUser = new BasicDBObject("first_name", first_name);
+                            newUser.put("last_name", last_name);
+                            newUser.put("email_address", email_address);
+                            newUser.put("plan_type", plan);
+                            newUser.put("user_name", user_name);
 
-                    mainTemplate.process(register2Map, writer);
-                    return writer.toString();
+                            collection.insert(newUser);
 
-                } catch (Exception e) {
+                            mainTemplate = configuration.getTemplate("register2.ftl");
+                            Map<String, Object> register2Map = new HashMap<String, Object>();
+
+                            Random random = new Random();
+                            int ranNum = random.nextInt(123);
+                            String id = ranNum+"xYzO";
+                            register2Map.put("_id", id);
+                            register2Map.put("user_name", user_name);
+                            register2Map.put("first_name", first_name);
+
+                            mainTemplate.process(register2Map, writer);
+
+                            return writer;
+                        }
+                        return "ERROR: email address is wrong";
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    } catch (IOException e) {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    } catch (TemplateException e) {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }catch (Exception e) {
 
                     halt(500);
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
