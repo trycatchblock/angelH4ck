@@ -68,6 +68,7 @@
 						<h3>Shoes - LL Bean</h3>
 						<div class="fromLocation"><span>Merchant:</span> Amazon LLC</div>
 					</div>
+					<img src="http://maps.google.com/maps/api/staticmap?center=+40.758178710938,-73.808700561523&zoom=13&size=900x300&sensor=false" />
 					<div class="cardBottom">
 					<div class="clear"></div>
 						<div class="statusBar">
@@ -85,16 +86,26 @@
 		</div>
 	</section>
 
-	<section id="account" class="row section">
-	    <div class="container">
-	        <div class="col eight">
-                 <img src="http://maps.google.com/maps/api/staticmap?center=+40.758178710938,-73.808700561523&zoom=13&size=900x300&sensor=false">
-    	    </div>
-    	</div>
-    <section>
 
+<section id="keyAddress">
+	<div class="row section container">
+		<h2>Key Addresses</h2>
+	</div>
 
+    <div class="row section container">
+     <#list addresses as address>
+		<div class="col four" >
+			<h4>Home</h4>
+			<span><a href="#">Edit</a> | <a href="#">Delete</a></span>
+			<div class="clear"></div>
+			<address>
+			${address.address_name} <br />
+			${address.address}
+			</address>
+		</div>
+     </#list>
 
+</section>
 
 <!--
 live map of delivery guy

@@ -229,7 +229,7 @@ public class mainPage {
 
                     addresses.add(address1);
 
-                    addresses.add(address2);
+                    //addresses.add(address2);
 
 
 
