@@ -104,13 +104,17 @@ public class mainPage {
                     final String last_name = request.queryParams("last_name");
                     final String email_address = request.queryParams("email_address");
                     final String plan = request.queryParams("plan");
+                    final String pass_word = request.queryParams("pass_word");
 
-                    HttpResponse<JsonNode> req = Unirest.get("https://pozzad-email-validator.p.mashape.com/emailvalidator/validateEmail/"+email_address)
+                    HttpResponse<JsonNode> Emailrequest = Unirest.get("https://pozzad-email-validator.p.mashape.com/emailvalidator/validateEmail/"+email_address)
                             .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
                             .asJson();
 
+                    HttpResponse<JsonNode> passWordrequest = Unirest.get("https://pozzad-passwords.p.mashape.com/passwordtools/hash/"+pass_word)
+                            .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
+                            .asJson();
 
-                        if(!req.getBody().getObject().getString("isValid").equals("false"))
+                        if(!Emailrequest.getBody().getObject().getString("isValid").equals("false"))
                         {
 
                             //dont care about the below for now
@@ -123,6 +127,7 @@ public class mainPage {
                             newUser.put("email_address", email_address);
                             newUser.put("plan_type", plan);
                             newUser.put("user_name", user_name);
+                            newUser.put("pass_word", passWordrequest.getBody().getObject().getString("hash"));
 
                             collection.insert(newUser);
 
@@ -187,11 +192,47 @@ public class mainPage {
                      DBObject address1 = new BasicDBObject("address_name",key_address_name);
                      address1.put("address", key_address);
 
+
+
                      DBObject address2 = new BasicDBObject("address_name",key_address2_name);
                      address2.put("address", key_address2);
 
+                    HttpResponse<JsonNode> addressRequest1 = Unirest.get("https://montanaflynn-geocode-location-information.p.mashape.com/address?address="+key_address)
+                            .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
+                            .asJson();
+
+                    HttpResponse<JsonNode> addressRequest2 = Unirest.get("https://montanaflynn-geocode-location-information.p.mashape.com/address?address="+key_address2)
+                            .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
+                            .asJson();
+
+
+                    String address1Lat = addressRequest1.getBody().getObject().getString("latitude");
+                    String address1Long = addressRequest1.getBody().getObject().getString("longitude");
+
+                    String address2Lat = addressRequest2.getBody().getObject().getString("latitude");
+                    String address2Long = addressRequest2.getBody().getObject().getString("longitude");
+
+                    HttpResponse<JsonNode> addMaprequest1 = Unirest.get("https://orfeomorello-static-map.p.mashape.com/mashape/staticimagemap/lat/"+address1Lat+"/lng/"+address1Long+"/provider/Google?height=200&key=%3Cnumeric%20or%20alphanumericstring%3E&maptype=roadmap&width=300&zoom=13")
+                            .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
+                            .asJson();
+
+                    HttpResponse<JsonNode> addMaprequest2 = Unirest.get("https://orfeomorello-static-map.p.mashape.com/mashape/staticimagemap/lat/"+address2Lat+"/lng/"+address1Long+"/provider/Google?height=200&key=%3Cnumeric%20or%20alphanumericstring%3E&maptype=roadmap&width=300&zoom=13")
+                            .header("X-Mashape-Authorization", "saEBgTRPpQskQMx5lyTrxylsjxSYGdDk")
+                            .asJson();
+
+                    String addMapImageURL1 = addMaprequest1.getBody().getObject().getString("imageUrl");
+                    String addMapImageURL2 = addMaprequest2.getBody().getObject().getString("imageUrl");
+
+
+                    address1.put("mapURL", addMapImageURL1);
+                    address2.put("mapURL", addMapImageURL2);
+
                     addresses.add(address1);
+
                     addresses.add(address2);
+
+
+
 
                     document.put("addresses",addresses );
 
@@ -205,7 +246,6 @@ public class mainPage {
                     BasicDBList notifications = (BasicDBList)document.get("notification");
 
                     String firstName = (String)document.get("first_name");
-
 
 
                     accountsMap.put("addresses", addresses);
