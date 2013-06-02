@@ -10,6 +10,7 @@ import spark.Spark;
 
 import java.io.StringWriter;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -85,9 +86,9 @@ public class mainPage {
         });
 
 
-        Spark.post(new Route("/register_2"){
+        Spark.post(new Route("/register_2") {
             @Override
-            public Object handle(final Request request, final Response response){
+            public Object handle(final Request request, final Response response) {
                 StringWriter writer = new StringWriter();
                 Template mainTemplate;
 
@@ -102,9 +103,9 @@ public class mainPage {
 
                     mainTemplate = configuration.getTemplate("register2.ftl");
                     Map<String, Object> register2Map = new HashMap<String, Object>();
-                    register2Map.put("_id", "");
+                    register2Map.put("_id", "abc123");
                     mainTemplate.process(register2Map, writer);
-                    return mainTemplate.toString();
+                    return writer.toString();
 
                 } catch (Exception e) {
 
@@ -116,6 +117,7 @@ public class mainPage {
 
             }
         });
+
 
 
         Spark.post(new Route("/signed_in"){
@@ -171,25 +173,109 @@ public class mainPage {
             }
         });
 
+
+        Spark.get(new Route("/Contact"){
+            @Override
+            public Object handle(final Request request, final Response response){
+                StringWriter writer = new StringWriter();
+                try{
+                    Template contactTemplate = configuration.getTemplate("contact.ftl");
+
+                    //   Map<String, Object> emptyMap = new HashMap<String, Object>();
+                    // mainTemplate.process(document, writer);
+                    return contactTemplate.toString();
+                }
+                catch(Exception e)
+                {
+
+                }
+                return writer;
+            }
+        });
+
+        Spark.get(new Route("/FAQ"){
+            @Override
+            public Object handle(final Request request, final Response response){
+                StringWriter writer = new StringWriter();
+                try{
+                    Template faqTemplate = configuration.getTemplate("faq.ftl");
+
+                    //   Map<String, Object> emptyMap = new HashMap<String, Object>();
+                    // mainTemplate.process(document, writer);
+                    return faqTemplate.toString();
+                }
+                catch(Exception e)
+                {
+
+                }
+                return writer;
+            }
+        });
+
+
+        Spark.get(new Route("/settings"){
+            @Override
+            public Object handle(final Request request, final Response response){
+                StringWriter writer = new StringWriter();
+                try{
+                    Template settingsTemplate = configuration.getTemplate("settings.ftl");
+
+                    //   Map<String, Object> emptyMap = new HashMap<String, Object>();
+                    // mainTemplate.process(document, writer);
+                    return settingsTemplate.toString();
+                }
+                catch(Exception e)
+                {
+
+                }
+                return writer;
+            }
+        });
+
+
         Spark.post(new Route("/logged_in"){
 
            public Object handle(final Request request, final Response response)
            {
+               StringWriter writer = new StringWriter();
                try{
                      final String username = request.queryParams("user");
+                   //grab the user
                     //lets ignore the password
-                   if (username == null){
-                       return "ERROR with username!";
-                   }
-                   else{
-                       return "Hello " + username;
-                   }
+
+
+                    BasicDBObject query = new BasicDBObject("user_name", username);
+
+                    DBObject document = collection.findOne(query);
+
+
+                   Map<String, Object> accountsMap = new HashMap<String, Object>();
+
+                   BasicDBList deliveries = (BasicDBList)document.get("deliveries");
+                    BasicDBList addresses = (BasicDBList)document.get("addresses");
+                    BasicDBList notifications = (BasicDBList)document.get("notification");
+
+                   String firstName = (String)document.get("first_name");
+
+
+
+                   accountsMap.put("notifications", notifications);
+                   accountsMap.put("addresses", addresses);
+                   accountsMap.put("deliveries", deliveries);
+                   accountsMap.put("firstname", firstName);
+
+
+                    Template accountTemplate = configuration.getTemplate("account.ftl");
+
+                    //   Map<String, Object> emptyMap = new HashMap<String, Object>();
+                    accountTemplate.process(accountsMap, writer);
+
                }
                catch(Exception e)
                {
                              return null;
                }
-
+                    return writer;
            }
         });
 

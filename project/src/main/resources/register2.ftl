@@ -4,7 +4,10 @@
 </head>
 <body>
 Congratulations! You've signed up for _____. Please fill out your profile below </br>
-Your custom ID# is ${_id}</br>
+Your custom ID# is ${_id}</br>     </br>
+Use it when you ship your mail to    </br>
+123 Main Street                   </br>
+Brooklyn, NY 11204              </br></br>
 
 <form action="/signed_in" method="POST">
 key address 1 name<input type="text" name="key_address_name">

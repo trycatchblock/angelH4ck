@@ -6,7 +6,7 @@
 Sign up
 <form action="/register_2" method="POST">
 First Name: <input type="text" name="first_name">     </br>
-Last Name: <input type="text" name="last_name">
+Last Name: <input type="text" name="last_name">                    </br>
 Email Address: <input type="text" name="email_address">     </br>
 Select Plan: <input type="text" name="plan">
 Billing method: <input type="text" name="billing_method">     </br>
