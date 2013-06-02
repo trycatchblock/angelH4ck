@@ -27,8 +27,8 @@
 				<div class="loginBox hide">
 					<form method="post" action="/logged_in" class="pure-form" >
 						<fieldset>
-							<input type="email_address"  />
-							<input type="password" />
+							<input type="text" name="user_name" />
+							<input type="text" name="pass_word" />
 							<input type="submit" class="pure-button" value="Submit" />
 						</fieldset>	
 					</form>
