@@ -44,7 +44,7 @@
 		<div class="container">
 			<div class="col ten">
 				<div class="welcome">
-					<h2>Hey Sam!</h2>
+					<h2>Hey Peter!</h2>
 					<p>Welcome back. On this page, you can view your expected deliveries, access past delivery history, and modify your key addresses. Need a refresher on package interception by CatchBox? <a href="#">We've got you covered.</a>
 				</div>
 
