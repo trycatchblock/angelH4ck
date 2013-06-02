@@ -362,7 +362,7 @@ public class mainPage {
 
 
         Spark.post(new Route("/logged_in"){
-
+           @Override
            public Object handle(final Request request, final Response response)
            {
                StringWriter writer = new StringWriter();
@@ -373,7 +373,6 @@ public class mainPage {
 
 
                     BasicDBObject query = new BasicDBObject("user_name", username);
-
                     DBObject document = collection.findOne(query);
 
 
