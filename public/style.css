@@ -774,12 +774,34 @@ header nav fieldset input[type=tel] {
   margin: 0px auto;
   float: none;
 }
+#account .welcome {
+  text-shadow: 0px 2px 0px white;
+}
 #account .welcome h2 {
   font-family: "Oxygen", "Helvetica Neue", helvetica, sans-serif;
   font-weight: 700;
+  font-size: 24px;
+  color: #57493f;
 }
 #account .welcome p {
   font-family: "Roboto Slab";
   font-size: 15px;
   line-height: 20px;
+  color: #393029;
+}
+#account .queue {
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  margin: 30px 0;
+  display: block;
+  padding: 10px;
+  -webkit-box-shadow: 0px -1px 0px #d3c9c2;
+  -moz-box-shadow: 0px -1px 0px #d3c9c2;
+  box-shadow: 0px -1px 0px #d3c9c2;
+  border: 1px solid #efece9;
 }
