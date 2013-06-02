@@ -1,22 +1,66 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>App Name</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="http://198.199.87.209/style.css">
+	<link rel="stylesheet" href="http://198.199.87.209/assets/css/pure-min.css">
+	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 </head>
+
 <body>
-login?
-<form action="/logged_in" method="POST">
-Username: <input type="text" name="user">     </br>
-Password: <input type="text" name="password">
-<input type="submit" value="Submit">
-</form>
-</br>
-<a href="/register">or you can register!</a>
-</br>
-</br>
-<a href="/contact">contact</a>
-</br>
-<a href="/faq">faq</a>
-</br>
-<a href="/settings">settings</a>
+	<header>
+		<div class="container section row">
+			<div class="col five">
+				<a href="#">
+					<img src="http://198.199.87.209/catchbox_logo.png" />
+					<h1>CatchBox</h1>
+				</a>
+			</div>
+
+			<nav class="col seven">
+				<ul class="nav">
+					<a href="#"><li>How It Works</li></a>
+					<a href="#"><li>FAQ</li></a>
+					<a href="#" class="login"><li>Login</li></a>
+				</ul>
+
+				<div class="loginBox hide">
+					<form class="pure-form">
+						<fieldset>
+							<input type="email" placeholder="Email" required />
+							<input type="password" placeholder="Password" required />
+							<input type="submit" class="pure-button" value="Submit" />
+						</fieldset>	
+					</form>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+
+<div class="clear"></div>
+
+	<section id="hero">
+		<div class="container">
+<h2>Don’t be boxed in by your packages.</h2>
+
+<p>Catchbox is a bit like a trusty neighbor who is always home.<br />
+No more rearranging your schedule to pick up packages.<br />
+Just use our address and we’ll bring it to you.<br />
+Any time, anywhere in New York City.</p>
+
+		</div>
+		
+		
+	</section>
+
+
+<section id="benefits">
+</section>
+
+	<script src="assets/js/application.js"></script>
+
+
+
 </body>
 </html>
