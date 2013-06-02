@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto+Slab:400,300|Oxygen:700,400,300);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400|Roboto+Slab:700,400,300|Oxygen:700,400,300);
 /* ==========================================================================
 
   Base Stylesheet - http://git.io/base
@@ -790,18 +790,121 @@ header nav fieldset input[type=tel] {
   color: #393029;
 }
 #account .queue {
-  background: rgba(255, 255, 255, 0.8);
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  margin: 40px 0;
+}
+#account .queue .cardTop,
+#account .queue .cardBottom {
+  margin: 0;
+  display: block;
+  padding: 15px;
+  font-family: "Roboto Slab";
+}
+#account .queue .cardTop h3,
+#account .queue .cardBottom h3 {
+  margin: 0;
+  line-height: 20px;
+  font-size: 22px;
+  display: inline-block;
+  float: left;
+  font-weight: 700;
+  color: #302822;
+}
+#account .queue .cardTop .fromLocation,
+#account .queue .cardBottom .fromLocation {
+  float: right;
+}
+#account .queue .cardTop .fromLocation span,
+#account .queue .cardBottom .fromLocation span {
+  text-transform: uppercase;
+  font-family: "Oxygen", "Helvetica Neue", helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #887262;
+}
+#account .queue .cardTop .statusBar .DeliveryStatus,
+#account .queue .cardBottom .statusBar .DeliveryStatus {
+  background: #92ac4d;
+  display: block;
+  display: inline-block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  margin: 30px 0;
+  padding: 4px;
+  margin: 0 3px;
+}
+#account .queue .cardTop .statusBar .DeliveryLocation,
+#account .queue .cardBottom .statusBar .DeliveryLocation {
+  background: #fcf5db;
   display: block;
-  padding: 10px;
+  display: inline-block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  padding: 4px;
+  margin: 0 3px;
+}
+#account .queue .cardTop .transit .DeliveryStatus,
+#account .queue .cardBottom .transit .DeliveryStatus {
+  background: #ed7856;
+}
+#account .queue .cardTop {
+  -webkit-border-top-right-radius: 8px;
+  -webkit-border-bottom-right-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-top-left-radius: 8px;
+  -moz-border-radius-topright: 8px;
+  -moz-border-radius-bottomright: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-topleft: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 8px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
   -webkit-box-shadow: 0px -1px 0px #d3c9c2;
   -moz-box-shadow: 0px -1px 0px #d3c9c2;
   box-shadow: 0px -1px 0px #d3c9c2;
-  border: 1px solid #efece9;
+  border-top: 1px solid #efece9;
+  border-left: 1px solid #efece9;
+  border-right: 1px solid #efece9;
+  background: rgba(255, 255, 255, 0.8);
+  height: 50px;
+}
+#account .queue .cardBottom {
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  -webkit-border-top-left-radius: 0;
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 8px;
+  -moz-border-radius-bottomleft: 8px;
+  -moz-border-radius-topleft: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-top-left-radius: 0;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0px 1px 0px #ffffff;
+  -moz-box-shadow: 0px 1px 0px #ffffff;
+  box-shadow: 0px 1px 0px #ffffff;
+  border-bottom: 1px solid #efece9;
+  border-left: 1px solid #efece9;
+  border-right: 1px solid #efece9;
+  margin-bottom: 20px;
+  background: #f5df8d;
+}
+#account .queue h2 {
+  margin: 0 0 10px 0;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
+  text-transform: uppercase;
 }
