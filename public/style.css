@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto+Slab:400,300|Oxygen:400,300);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto+Slab:400,300|Oxygen:700,400,300);
 /* ==========================================================================
 
   Base Stylesheet - http://git.io/base
@@ -765,4 +765,21 @@ header nav fieldset input[type=tel] {
   line-height: 30px;
   margin: 0px auto;
   text-align: center;
+}
+#account {
+  display: block;
+  padding: 10px;
+}
+#account .col {
+  margin: 0px auto;
+  float: none;
+}
+#account .welcome h2 {
+  font-family: "Oxygen", "Helvetica Neue", helvetica, sans-serif;
+  font-weight: 700;
+}
+#account .welcome p {
+  font-family: "Roboto Slab";
+  font-size: 15px;
+  line-height: 20px;
 }

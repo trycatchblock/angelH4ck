@@ -1,5 +1,5 @@
 @import "base.less"; // Import the base css
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto+Slab:400,300|Oxygen:400,300);
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700|Roboto+Slab:400,300|Oxygen:700,400,300);
 
 // * { background: rgba(0,0,0,0.1);}
 
@@ -69,37 +69,52 @@ header {
          }
       }
    }
-
-
 }
-
-
 
 #hero {
    border-bottom: 1px solid #ccc0b8;
    padding-bottom: 80px;
 
-h2 {
-   font-family: "Oxygen", "Helvetica Neue", helvetica, sans-serif;
-   font-size: 40px;
-   text-align: center;
-   margin-top: 60px;
-   font-weight: 300;
-   color: #57493f;
-   text-shadow: 0px -2px 1px white;
+   h2 {
+      font-family: "Oxygen", "Helvetica Neue", helvetica, sans-serif;
+      font-size: 40px;
+      text-align: center;
+      margin-top: 60px;
+      font-weight: 300;
+      color: #57493f;
+      text-shadow: 0px -2px 1px white;
+   }
+
+   p {
+      font-family: "Roboto Slab";
+      width: 80%;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 30px;
+      margin: 0px auto;
+      text-align: center;
+   }
 }
 
+#account {
+   display: block;
+   padding: 10px;
 
-p {
-   font-family: "Roboto Slab";
-   width: 80%;
-   font-size: 16px;
-   font-weight: 300;
-   line-height: 30px;
-   margin: 0px auto;
-   text-align: center;
+   .col {
+      margin: 0px auto;
+      float: none;
+   }
+
+   .welcome {
+      h2 {
+               font-family: "Oxygen", "Helvetica Neue", helvetica, sans-serif;
+font-weight: 700;
+      }
+            p {
+               font-family: "Roboto Slab";
+               font-size: 15px;
+               line-height: 20px;
+            }
+
+   }
 }
-
-}
-
-
