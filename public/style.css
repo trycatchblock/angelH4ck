@@ -903,8 +903,21 @@ header nav fieldset input[type=tel] {
   margin-bottom: 20px;
   background: #f5df8d;
 }
+#account .queue a {
+  color: #756154;
+  text-shadow: 0px -1px 0px #ffffff;
+  text-decoration: none;
+  float: right;
+  font-family: "Oxygen", "Helvetica Neue", helvetica, sans-serif;
+  font-size: 13px;
+}
+#account .queue a:hover {
+  color: #302822;
+}
 #account .queue h2 {
-  margin: 0 0 10px 0;
+  color: #302822;
+  color: #57493f;
+  text-shadow: 0px -2px 1px #ffffff;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
   text-transform: uppercase;
 }
