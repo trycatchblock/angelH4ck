@@ -25,10 +25,10 @@
 				</ul>
 
 				<div class="loginBox hide">
-					<form class="pure-form">
+					<form method="post" action="/logged_in" class="pure-form" >
 						<fieldset>
-							<input type="email" placeholder="Email" required />
-							<input type="password" placeholder="Password" required />
+							<input type="email_address"  />
+							<input type="password" />
 							<input type="submit" class="pure-button" value="Submit" />
 						</fieldset>	
 					</form>
