@@ -679,6 +679,7 @@ textarea {
 }
 body {
   background: #f7f4f3;
+  padding-bottom: 40px;
 }
 div {
   box-sizing: border-box;
@@ -721,6 +722,11 @@ header nav ul a {
   padding: 26px 20px 25px;
   float: left;
 }
+header nav ul a.active {
+  color: #120f0d;
+  border-bottom: 2px solid #b7a499;
+  background: #f6f4f3;
+}
 header nav ul a:hover {
   color: #120f0d;
   border-bottom: 2px solid #b7a499;
@@ -758,7 +764,7 @@ header nav fieldset input[type=tel] {
   text-shadow: 0px -2px 1px #ffffff;
 }
 #hero p {
-  font-family: "Roboto Slab";
+  font-family: "Roboto Slab", Georgia, serif;
   width: 80%;
   font-size: 16px;
   font-weight: 300;
@@ -784,7 +790,7 @@ header nav fieldset input[type=tel] {
   color: #57493f;
 }
 #account .welcome p {
-  font-family: "Roboto Slab";
+  font-family: "Roboto Slab", Georgia, serif;
   font-size: 15px;
   line-height: 20px;
   color: #393029;
@@ -797,7 +803,7 @@ header nav fieldset input[type=tel] {
   margin: 0;
   display: block;
   padding: 15px;
-  font-family: "Roboto Slab";
+  font-family: "Roboto Slab", Georgia, serif;
 }
 #account .queue .cardTop h3,
 #account .queue .cardBottom h3 {
@@ -915,9 +921,53 @@ header nav fieldset input[type=tel] {
   color: #302822;
 }
 #account .queue h2 {
-  color: #302822;
   color: #57493f;
   text-shadow: 0px -2px 1px #ffffff;
   font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
   text-transform: uppercase;
+}
+#account .queue img {
+  width: 761px;
+  border-left: 1px solid #efece9;
+  border-right: 1px solid #efece9;
+  margin: 0;
+  margin-bottom: -5px;
+}
+#keyAddress h2 {
+  color: #57493f;
+  text-shadow: 0px -2px 1px #ffffff;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
+  text-transform: uppercase;
+}
+#keyAddress h4 {
+  margin: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: "Roboto Slab", Georgia, serif;
+  float: left;
+  display: inline-block;
+}
+#keyAddress span {
+  font-size: 11px;
+  margin-top: 6px;
+  display: block;
+  color: #57493f;
+  float: right;
+}
+#keyAddress span a {
+  color: #a89487;
+  text-decoration: none;
+}
+#keyAddress .four {
+  background: white;
+  padding: 10px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
 }

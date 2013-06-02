@@ -3,7 +3,7 @@
 
 // * { background: rgba(0,0,0,0.1);}
 
-body { background: #f7f4f3; }
+body { background: #f7f4f3; padding-bottom: 40px;}
 div { box-sizing: border-box; }
 .hide { display: none; }
 .show { display: block; }
@@ -39,6 +39,11 @@ header {
          text-decoration: none;
          padding: 26px 20px 25px;
          float: left;
+         &.active {
+ color: #120f0d;
+            border-bottom: 2px solid #b7a499;            
+            background: #f6f4f3;
+         }
 
          &:hover {
             color: #120f0d;
@@ -86,7 +91,7 @@ header {
    }
 
    p {
-      font-family: "Roboto Slab";
+         font-family: "Roboto Slab", Georgia, serif;
       width: 80%;
       font-size: 16px;
       font-weight: 300;
@@ -115,7 +120,7 @@ header {
          color: #57493f;
       }
       p {
-         font-family: "Roboto Slab";
+         font-family: "Roboto Slab", Georgia, serif;
          font-size: 15px;
          line-height: 20px;
          color: #393029;
@@ -130,9 +135,7 @@ header {
 margin: 0;
       display: block;
       padding: 15px;
-      font-family: "Roboto Slab";
-      //margin-bottom: 30px;
-
+         font-family: "Roboto Slab", Georgia, serif;
 
      h3 {
       margin: 0;
@@ -219,11 +222,53 @@ a
       }
 }
      h2 {
-      color: #302822;
-
-    color: #57493f;
-      text-shadow: 0px -2px 1px white;         font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
-text-transform: uppercase;
+      color: #57493f;
+      text-shadow: 0px -2px 1px white;
+      font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
+      text-transform: uppercase;
      }
+
+     img {
+      width: 761px;
+           border-left: 1px solid #efece9;
+     border-right: 1px solid #efece9;
+     margin: 0;
+     margin-bottom: -5px;
+     }
+   }
+}
+
+#keyAddress {
+   h2 {
+            color: #57493f;
+      text-shadow: 0px -2px 1px white;
+      font-family: "Montserrat", "Helvetica Neue", Helvetica, arial, sans-serif;
+      text-transform: uppercase;
+   }
+h4 {
+   margin: 0;
+   font-size: 18px;
+   margin-bottom: 10px;
+         font-family: "Roboto Slab", Georgia, serif;
+float: left;
+display: inline-block;
+}
+span  {
+   font-size: 11px;
+   margin-top: 6px;
+   display: block;
+   color: #57493f;
+   float: right;
+
+   a {
+      color: #a89487;
+      text-decoration: none;
+   }
+}
+   .four {
+      background: white;
+      padding: 10px;
+      .border-radius(8px);
+      .box-shadow(0px 1px 3px rgba(0,0,0,0.1));
    }
 }
