@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="http://198.199.87.209/style.css">
 	<link rel="stylesheet" href="http://198.199.87.209/assets/css/pure-min.css">
 	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+	<title>Catchbox - Don’t be boxed in by your package</title>
 </head>
 
 <body>
